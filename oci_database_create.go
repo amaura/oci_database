@@ -66,7 +66,7 @@ func main() {
 
 	dbJSON, err := dbCreateRespToJson(createDBResp)
 	helpers.FatalIfError(err)
-	fmt.Printf("%s", dbJSON)
+	fmt.Printf("%s", string(dbJSON))
 
 	if options.WaitForState != "" {
 		//Wait for status
