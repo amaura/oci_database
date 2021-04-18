@@ -19,9 +19,10 @@ type Options struct {
 	DbWorkload string `short:"l" long:"db-workload" description:"Database workload : OLTP or DSS" required:"false" default:"OLTP"`
 	DbHomeId   string `short:"o" long:"db-home-id" description:"Database home OCID" required:"true"`
 	//VMClusterId string `short:"c" long:"vm-cluster-id" description:"VM cluster OCID" required:"true"`
-	WaitForState        string `short:"w" long:"wait-for-state" description:"Wait for state : AVAILABLE, TERMINATED, etc." required:"false"`
-	AdminPassword       string `short:"p" long:"admin-password" description:"Database password" required:"true"`
-	DBVersion           string `short:"v" long:"db-version" description:"Database version : 19.0.0.0, 11.2.0.4, 12.2.0.1" required:"true"`
+	WaitForState  string `short:"w" long:"wait-for-state" description:"Wait for state : AVAILABLE, TERMINATED, etc." required:"false"`
+	AdminPassword string `short:"p" long:"admin-password" description:"Database password" required:"true"`
+	// DB version not implemented because DB Home OCID is used
+	//DBVersion           string `short:"v" long:"db-version" description:"Database version : 19.0.0.0, 11.2.0.4, 12.2.0.1" required:"true"`
 	DBUniqueName        string `short:"u" long:"db-unique-name" description:"Database Unique Name" required:"false"`
 	CharSet             string `short:"s" long:"character-set" description:"Character Set" required:"false" default:"AL32UTF8"`
 	NCharSet            string `short:"n" long:"national-character-set" description:"National Character Set" required:"false" default:"AL16UTF16"`
@@ -153,9 +154,9 @@ func createDB(dbCreateOptions Options) (database.CreateDatabaseResponse, error) 
 	}
 
 	createNewDatabaseDetails := database.CreateNewDatabaseDetails{
-		DbHomeId:  &dbCreateOptions.DbHomeId,
-		Database:  &createDatabaseDetails,
-		DbVersion: &dbCreateOptions.DBVersion,
+		DbHomeId: &dbCreateOptions.DbHomeId,
+		Database: &createDatabaseDetails,
+		//DbVersion: &dbCreateOptions.DBVersion,
 	}
 
 	createDatabaseRequest := database.CreateDatabaseRequest{
