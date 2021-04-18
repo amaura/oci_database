@@ -19,7 +19,7 @@ jobs:
         go-version: 1.15
     - name: Install dependencies
       run: |
-        go get go get "github.com/jessevdk/go-flags"
+        go get "github.com/jessevdk/go-flags"
         go get -u github.com/oracle/oci-go-sdk
     - name: Build
       run: go build -v ./...
